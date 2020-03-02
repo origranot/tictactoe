@@ -1,0 +1,14 @@
+form {
+    max-width: 40vw;
+    margin: auto;
+    margin-top: 10vh;
+}
+
+.play-button {
+    margin: auto;
+    margin-top: 5vh;
+    width: 7vw;
+    font-style: italic;
+    font-size: larger;
+    font-weight: 400;
+}
