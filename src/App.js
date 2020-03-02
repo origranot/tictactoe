@@ -2,17 +2,13 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import { Container } from 'react-bootstrap';
+import Board from './components/Board/Board'
 
 function App() {
   return (
-    <Container>
-      fa
-      asf
-      asf
-      asf
-      
-    </Container>
+      <div className="box">
+        <Board rows={3} cols={3}/>
+    </div>
   );
 }
 
