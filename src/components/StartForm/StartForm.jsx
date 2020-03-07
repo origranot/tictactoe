@@ -8,12 +8,7 @@ class StartForm extends Component {
 
     handleClick = (event) => {
         event.preventDefault();
-
-        let players = {
-            firstPlayer: this.refs.firstPlayer.value,
-            secondPlayer: this.refs.secondPlayer.value
-        }
-
+        let players = [this.refs.firstPlayer.value, this.refs.secondPlayer.value];
         this.props.handleStart(players);
     }
 

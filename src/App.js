@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -8,27 +8,30 @@ import StartForm from './components/StartForm/StartForm'
 import Info from './components/Info/Info'
 
 
-const NUMBER_OF_ROWS = 3;
-const NUMBER_OF_COLS = 3;
+const BOARD_SIZE = 3;
 
 
 function App() {
 
-  const [players, setPlayers] = useState(0);
+  const [players, setPlayers] = useState([]);
   const [gameStarted, setGameStarted] = useState(false);
-  const [playerTurn, setPlayerTurn] = useState(0);
+  const [isFirstPlayerTurn, setIsFirstPlayerTurn] = useState(true);
 
   const startGame = (players) => {
-
+    setPlayers(players);
     setGameStarted(true);
+  }
+
+  const clickedSquare = () => {
+    setIsFirstPlayerTurn(!isFirstPlayerTurn);
   }
 
   return (
     <>
       <Box>
-        <Board rows={NUMBER_OF_ROWS} cols={NUMBER_OF_COLS} />
+        <Board size={BOARD_SIZE} isFirstPlayerTurn={isFirstPlayerTurn} handleClick={clickedSquare} gameStarted={gameStarted}/>
       </Box>
-      {gameStarted ? <Info /> : <StartForm handleStart={startGame} />}
+      {gameStarted ? <Info players={players} isFirstPlayerTurn={isFirstPlayerTurn} /> : <StartForm handleStart={startGame} />}
     </>
   );
 }
