@@ -18,14 +18,14 @@ class Board extends Component {
         newSquareArray[squarePlace] = this.props.isFirstPlayerTurn ? 'xSign' : 'oSign';
         this.setState({ squareArray: newSquareArray });
 
-        if (this.checkWin()) {
+        if (this.checkWinner()) {
 
         }
 
         this.props.handleClick(squarePlace);
     }
 
-    checkWin = () => {
+    checkWinner = () => {
 
         let hasWinner = false;
 

@@ -12,3 +12,8 @@ form {
     font-size: larger;
     font-weight: 400;
 }
+
+.err {
+    text-align: center;
+    color:red;
+}
