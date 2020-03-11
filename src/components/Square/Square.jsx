@@ -4,8 +4,10 @@ import './Square.css'
 
 class Square extends Component {
 
-    handleClick = () => {
-        this.props.handleClick(this.props.place);
+    handleClick = (event) => {
+        let row = event.target.parentElement.rowIndex;
+        let col = event.target.cellIndex;
+        this.props.handleClick(row, col);
     }
 
     render() {

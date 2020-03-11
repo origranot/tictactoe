@@ -15,6 +15,7 @@ function App() {
 
   const [players, setPlayers] = useState([]);
   const [gameStarted, setGameStarted] = useState(false);
+  const [hasWinner, setHasWinner] = useState(false);
   const [isFirstPlayerTurn, setIsFirstPlayerTurn] = useState(true);
 
   const startGame = (players) => {
@@ -26,12 +27,18 @@ function App() {
     setIsFirstPlayerTurn(!isFirstPlayerTurn);
   }
 
+  const haveWinner = () => {
+    let winner = players[isFirstPlayerTurn ? 0 : 1];
+    setHasWinner(true);
+    alert(winner);
+  }
+
   return (
     <>
       <Box>
-        <Board size={BOARD_SIZE} isFirstPlayerTurn={isFirstPlayerTurn} handleClick={clickedSquare} gameStarted={gameStarted}/>
+        <Board size={BOARD_SIZE} isFirstPlayerTurn={isFirstPlayerTurn} handleClick={clickedSquare} gameStarted={gameStarted} haveWinner={haveWinner}/>
       </Box>
-      {gameStarted ? <Info players={players} isFirstPlayerTurn={isFirstPlayerTurn} /> : <StartForm handleStart={startGame} />}
+      {gameStarted && !hasWinner ? <Info players={players} isFirstPlayerTurn={isFirstPlayerTurn} /> : <StartForm  hasWinner={hasWinner} handleStart={startGame} />}
     </>
   );
 }
