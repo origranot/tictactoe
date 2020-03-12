@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Board.css'
-
 import Square from '../Square/Square'
 
 class Board extends Component {
@@ -10,7 +9,7 @@ class Board extends Component {
     }
 
     handleSquareClick = (row, col) => {
-        if (!this.props.gameStarted || this.state.squareArray[row][col] != null) {
+        if (!this.props.gameStarted || this.state.squareArray[row][col] != null || this.props.winner != null) {
             return;
         }
 
@@ -19,15 +18,31 @@ class Board extends Component {
         this.setState({ squareArray: newSquareArray });
 
         if (this.checkWinner()) {
-            this.props.haveWinner();
+            this.props.gameEnded('win');
+        } else if (this.checkTie()) {
+            this.props.gameEnded('tie');
         }
 
         this.props.handleClick(row, col);
     }
 
+    initBoard = () => {
+        this.setState({
+            squareArray: new Array(this.props.size).fill(null).map(() => new Array(this.props.size).fill(null))
+        });
+    }
+
+    checkTie = () => {
+        for (let arr of this.state.squareArray) {
+            if (arr.indexOf(null) !== -1) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     checkWinner = () => {
-
         let board = this.state.squareArray;
 
         // Rows
@@ -77,6 +92,8 @@ class Board extends Component {
                 return true;
             }
         }
+
+        return false;
     }
 
     createTable = () => {

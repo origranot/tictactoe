@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-
 import './StartForm.css';
-
 import { Form, Row, Col, Button } from 'react-bootstrap';
 
 class StartForm extends Component {
@@ -26,8 +24,6 @@ class StartForm extends Component {
             })
         }
 
-        console.log(firstPlayer.length);
-
         if (this.state.error != null) {
             return;
         }
@@ -48,9 +44,9 @@ class StartForm extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Button variant="info" type="submit" className="play-button" onClick={this.handleClick}>Play!</Button>
+                    <Button variant="info" type="submit" className="play-button" onClick={ this.handleClick }>Play!</Button>
                 </Row>
-                {this.state.error === null ? '' : <div className='err'>{this.state.error}</div>}
+                { this.state.error === null ? '' : <div className='err'>{ this.state.error }</div>}
             </Form>
         );
     }
